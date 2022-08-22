@@ -25,7 +25,7 @@
          data-logo_alignment="left">
       </div>
 
-      <button id="google_signout">
+      <button id="g_id_signout">
         Signout
       </button>
 
@@ -55,10 +55,10 @@
     
     }
 
-    const button = document.getElementById('google_signout');
+    const button = document.getElementById('g_id_signout');
     button.onclick = () => {
 
-        console.log(google.accounts.id)
+        // console.log(google.accounts.id)
         google.accounts.id.disableAutoSelect()
 
         google.accounts.id.revoke(localStorage.getItem('email'), done => {
