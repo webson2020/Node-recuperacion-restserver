@@ -25,32 +25,26 @@
          data-logo_alignment="left">
       </div>
 
-      <button id="g_id_signout">
+      <button id="google_signout">
         Signout
       </button>
 
 
       
       
-      <script>
-        let url = (window.location.hostname.includes('localhost')) ? 
-        'http://localhost:8080/api/auth/google' : 
-        'https://restserver-curso-node-nik.herokuapp.com/api/auth/google';
-    
-        function handleCredentialResponse(response) {
+    <script>
+    function handleCredentialResponse(response) {
 
         //  Google Token : ID_TOKEN
         // console.log('id_token', response.credential);
-        let data = { 
-            id_token: response.credential 
-        };
-        
-        fetch(url, {
+        const body = { id_token: response.credential }
+
+        fetch('http://localhost:8080/api/auth/google', {
             method: 'POST',
-            body: JSON.stringify(body) ,
             headers: {
                 'Content-Type': 'application/json'
             },
+            body: JSON.stringify(body) 
         })
         .then(resp => resp.json())
         .then(resp => {
@@ -61,7 +55,7 @@
     
     }
 
-    const button = document.getElementById('g_id_signout');
+    const button = document.getElementById('google_signout');
     button.onclick = () => {
 
         console.log(google.accounts.id)
@@ -74,6 +68,6 @@
     }
     </script>
 
-<script src="http://accounts.google.com/gsi/client" async defer></script>
+    <script src="http://accounts.google.com/gsi/client" async defer></script>
 </body>
 </html>
