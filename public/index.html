@@ -12,7 +12,7 @@
     <hr>
 
     <div id="g_id_onload"
-         data-client_id="76797063641-umomk0nj6bk76fv0dl2cs7dukg3m7t9e.apps.googleusercontent.com"
+         data-client_id="76797063641-0uijlgoj4ud9j1m6qs4fe1sh8v5rau3t.apps.googleusercontent.com"
          data-auto_prompt="false"
          data-callback="handleCredentialResponse">
       </div>
@@ -22,7 +22,7 @@
          data-theme="outline"
          data-text="sign_in_with"
          data-shape="rectangular"
-         data-logo_alignment="left">
+         data-logo_alignment="left"
       </div>
 
       <button id="google_signout">
@@ -39,7 +39,9 @@
         // console.log('id_token', response.credential);
         const body = { id_token: response.credential }
 
-        fetch('http://localhost:8080/api/auth/google', {
+        fetch(window.location.hostname.includes('localhost')
+        ?'http://localhost:8080/api/auth/google'
+        :'https://restserver-curso-node-nik.herokuapp.com/api/auth/google', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
